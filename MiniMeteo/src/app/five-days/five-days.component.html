@@ -2,31 +2,34 @@
     <h1 class="display-4">Ricerca della città</h1>
   
     <div class="input-group mt-3">
-      <input type="text" #newquery class="form-control" placeholder="Inserisci il nome della città">
-      <div class="input-group-append">
-        <button (click)="submit(newquery)" class="btn btn-dark btn-outline-light">Cerca</button>
-      </div>
+        <input type="text" #newquery class="form-control" placeholder="Inserisci il nome della città">
+        <div class="input-group-append">
+            <button (click)="submit(newquery)" class="btn btn-dark">Cerca</button>
+        </div>
     </div>
 </div>
 
 <div *ngIf="results" class="container mt-5">
     <h2 class="text-center mb-4">Informazioni sul meteo di {{ results.city.name }}</h2>
     <div class="row">
-        <div class="col-lg-4 mb-4" *ngFor="let item of results.list">
-            <div class="card">
-                <div class="card-body text-center">
-                    <h3 class="card-title">Data: {{ item.dt_txt}} </h3>
-                    <p class="card-text"><strong>Descrizione:</strong> {{ item.weather[0].description }}</p>
-                    <p class="card-text"><strong>Temperatura minima:</strong> {{ item.main.temp_min }} °C</p>
-                    <p class="card-text"><strong>Temperatura massima:</strong> {{ item.main.temp_max }} °C</p>
-                    <p class="card-text"><strong>Percepita come:</strong> {{ item.main.feels_like }} °C</p>
-                    <p class="card-text"><strong>Nuvolosità:</strong> {{ item.clouds.all }}%</p>
-                    <p class="card-text"><strong>Velocità del vento:</strong> {{ item.wind.speed }} m/s</p>
-                    
+        <div class="col-md-6 mx-auto mb-4">
+            <div class="card text-center position-relative">
+                <div class="card-body">
+                    <h5 class="card-title">{{ results.list[selectedIndex].dt_txt | date:'EEE, d MMM' }}</h5>
+                    <img src="http://openweathermap.org/img/wn/{{ results.list[selectedIndex].weather[0].icon }}@4x.png" alt="Icona meteo" class="img-fluid mt-3" style="width: 100px; height: 100px;">
+                    <p class="card-text">{{ results.list[selectedIndex].weather[0].description }}</p>
+                    <p class="card-text">Temp: {{ results.list[selectedIndex].main.temp }} °C</p>
+                    <p class="card-text">Temperatura minima: {{ results.list[selectedIndex].main.temp_min }} °C</p>
+                    <p class="card-text">Temperatura massima: {{ results.list[selectedIndex].main.temp_max }} °C</p>
+                    <p class="card-text">Percepita come: {{ results.list[selectedIndex].main.feels_like }} °C</p>
+                    <p class="card-text">Nuvolosità: {{ results.list[selectedIndex].clouds.all }}%</p>
+                    <p class="card-text">Velocità del vento: {{ results.list[selectedIndex].wind.speed }} m/s</p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center position-absolute w-100" style="bottom: 30px;">
+                    <button class="btn btn-dark mr-2 arrow-btn" (click)="prevItem()">↑</button>
+                    <button class="btn btn-dark arrow-btn" (click)="nextItem()">↓</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-

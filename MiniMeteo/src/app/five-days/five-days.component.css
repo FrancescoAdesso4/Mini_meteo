@@ -1,0 +1,7 @@
+.arrow-btn {
+    transition: transform 0.2s ease-in-out;
+}
+
+.arrow-btn:hover {
+    transform: scale(1.1);
+}
