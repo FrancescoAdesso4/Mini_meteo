@@ -9,7 +9,7 @@ export class APICallsService {
   //url per oauth: https://developer.spotify.com/console/get-search-item/
   //Ottengo il modulo HttpClient
   constructor(private http: HttpClient) { }
-  Token="1ddc3f9f51a32623b14d8e3addebf935"
+  Token="5f74cbb44bb38add01ac5b7a0dc56d29"
   searchCW(query: string) {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${this.Token}&units=metric&lang=it`;
     
